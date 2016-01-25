@@ -15,6 +15,8 @@ public class MusicOrganizer
     private MusicPlayer player;
     // A reader that can read music files and load them as tracks.
     private TrackReader reader;
+    //Atributo booleano para saber si la musica esta en reproduccion
+    private boolean reproduc;
 
     /**
      * Create a MusicOrganizer
@@ -24,6 +26,7 @@ public class MusicOrganizer
         tracks = new ArrayList<Track>();
         player = new MusicPlayer();
         reader = new TrackReader();
+        reproduc = false;
         readLibrary("audio");
         System.out.println("Music library loaded. " + getNumberOfTracks() + " tracks.");
         System.out.println();
@@ -52,18 +55,19 @@ public class MusicOrganizer
     public void isPlaying()
     {
        while (player!=null){
-           System.out.println("Hay algo en reproduccion");
+           System.out.println("Hay algo en reproduccion");//Esto esta puesto para seguir con el 54 ya que tengo que terminar el 53
         }
     }
-
 
     /**
      * Play a track in the collection.
      * @param index The index of the track to be played.
      */
-    public void playTrack(int index)
+    public void playTrack(int index, boolean  reproduc1)
     {
         if(indexValid(index)) {
+            reproduc1=reproduc;
+            isPlaying();
             Track track = tracks.get(index);
             player.startPlaying(track.getFilename());
             System.out.println("Now playing: " + track.getArtist() + " - " + track.getTitle());
@@ -131,11 +135,14 @@ public class MusicOrganizer
     /**
      * Play the first track in the collection, if there is one.
      */
-    public void playFirst()
+    public void playFirst(boolean reproduc1)
     {
+        reproduc1=reproduc;
         if(tracks.size() > 0) {
+            isPlaying();
             player.startPlaying(tracks.get(0).getFilename());
             tracks.get(0).cancionRepetidaPlayCount();
+            reproduc = true;
             //Track track = tracks.get(0);
             //track.cancionRepetidaPlayCount();
         }
