@@ -13,6 +13,8 @@ public class Track
     private String title;
     // Where the track is stored.
     private String filename;
+    //El album de la cancion.
+    private String album;
     //Atributo de la clase track para contar las veces que se ha repetido una cancionç
     private int playCount;
     
@@ -22,9 +24,9 @@ public class Track
      * @param title The track's title.
      * @param filename The track file. 
      */
-    public Track(String artist, String title, String filename)
+    public Track(String artist, String title,String album, String filename)
     {
-        setDetails(artist, title, filename);
+        setDetails(artist, title, album, filename);
         playCount = 0;
     }
        /**
@@ -52,7 +54,7 @@ public class Track
      */
     public Track(String filename)
     {
-        setDetails("unknown", "unknown", filename);
+        setDetails ("unknown", "unknown", "unknown", filename);
     }
     
     /**
@@ -81,14 +83,22 @@ public class Track
     {
         return filename;
     }
-        
+    
+        /**
+     * Devuelve el nombre del album
+     */
+    public String getAlbum()
+    {
+        return album;
+    } 
+    
     /**
      * Return details of the track: artist, title and file name.
      * @return The track's details.
      */
     public String getDetails()
     {
-        return artist + ": " + title + "  (file: " + filename + ")" + playCount;
+        return artist + ": " + title + album + "  (file: " + filename +  ")" + playCount;
     }
     
     /**
@@ -97,10 +107,11 @@ public class Track
      * @param title The track's title.
      * @param filename The track file. 
      */
-    private void setDetails(String artist, String title, String filename)
+    private void setDetails(String artist, String title,String album, String filename)
     {
         this.artist = artist;
         this.title = title;
+        this.album = album;
         this.filename = filename;
     }
     

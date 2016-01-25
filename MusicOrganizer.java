@@ -46,6 +46,16 @@ public class MusicOrganizer
     {
         tracks.add(track);
     }
+      /**
+     *Metodo para saber si hay algo en reproduccion
+     */
+    public void isPlaying()
+    {
+       while (player!=null){
+           System.out.println("Hay algo en reproduccion");
+        }
+    }
+
 
     /**
      * Play a track in the collection.
