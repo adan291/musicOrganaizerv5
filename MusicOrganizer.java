@@ -222,8 +222,8 @@ public class MusicOrganizer
         Iterator<Track> iter = tracks.iterator();
         while(iter.hasNext())
         {
-            Track track = iter.next();
-            System.out.println(track.getDetails());
+            Track trackIter = iter.next();
+            System.out.println(trackIter.getDetails());
         }
     }
 }
