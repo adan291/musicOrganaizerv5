@@ -49,13 +49,18 @@ public class MusicOrganizer
     {
         tracks.add(track);
     }
-      /**
+
+    /**
      *Metodo para saber si hay algo en reproduccion
      */
     public void isPlaying()
     {
-       while (player!=null){
-           System.out.println("Hay algo en reproduccion");//Esto esta puesto para seguir con el 54 ya que tengo que terminar el 53
+        if ( reproduc)
+        {
+            System.out.print("Se esta reproduciendo un track");
+        }
+        else{
+            System.out.print("No hay nada en reproduccion");
         }
     }
 
@@ -68,10 +73,12 @@ public class MusicOrganizer
         if(indexValid(index)) {
             reproduc1=reproduc;
             isPlaying();
+
             Track track = tracks.get(index);
             player.startPlaying(track.getFilename());
             System.out.println("Now playing: " + track.getArtist() + " - " + track.getTitle());
             track.cancionRepetidaPlayCount();
+
         }
     }
 
@@ -154,6 +161,7 @@ public class MusicOrganizer
     public void stopPlaying()
     {
         player.stop();
+        tracks.get(0).cancionRepetidaPlayCount();
     }
 
     /**
