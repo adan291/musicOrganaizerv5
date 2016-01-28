@@ -73,7 +73,7 @@ public class MusicOrganizer
         if(indexValid(index)) {
             reproduc1=reproduc;
             isPlaying();
-
+            reproduc=true;
             Track track = tracks.get(index);
             player.startPlaying(track.getFilename());
             System.out.println("Now playing: " + track.getArtist() + " - " + track.getTitle());
@@ -142,16 +142,20 @@ public class MusicOrganizer
     /**
      * Play the first track in the collection, if there is one.
      */
-    public void playFirst(boolean reproduc1)
+    public void playFirst()
     {
-        reproduc1=reproduc;
-        if(tracks.size() > 0) {
-            isPlaying();
-            player.startPlaying(tracks.get(0).getFilename());
-            tracks.get(0).cancionRepetidaPlayCount();
-            reproduc = true;
-            //Track track = tracks.get(0);
-            //track.cancionRepetidaPlayCount();
+        if(reproduc){
+            System.out.println("Hay una reproduccion en curso no podemos poner una nueva");
+        }
+        else{
+            if(tracks.size() > 0) {
+                isPlaying();
+                player.startPlaying(tracks.get(0).getFilename());
+                tracks.get(0).cancionRepetidaPlayCount();
+                reproduc = true;
+                //Track track = tracks.get(0);
+                //track.cancionRepetidaPlayCount();
+            }
         }
     }
 
@@ -162,6 +166,7 @@ public class MusicOrganizer
     {
         player.stop();
         tracks.get(0).cancionRepetidaPlayCount();
+        reproduc=false;
     }
 
     /**
@@ -212,7 +217,7 @@ public class MusicOrganizer
             }
         }   
     }
-    
+
     /**
      *Metodo que muestra los detalles de todos los tracks almacenados.
      *
@@ -226,36 +231,38 @@ public class MusicOrganizer
             System.out.println(trackIter.getDetails());
         }
     }
-      /**
+
+    /**
      *Metodo que permita eliminar del organizador los tracks que contengan un determinado artista
      *
      */
     public void removeByArtist(String artist)
     {
-     Iterator<Track> iter = tracks.iterator();
-     while(iter.hasNext())
-       {
-           Track trackIter = iter.next();
-           if(trackIter.getArtist().contains(artist)){
-               iter.remove();
+        Iterator<Track> iter = tracks.iterator();
+        while(iter.hasNext())
+        {
+            Track trackIter = iter.next();
+            if(trackIter.getArtist().contains(artist)){
+                iter.remove();
             }
-       }
-        
+        }
+
     }
-      /**
+
+    /**
      *Metodo que permita eliminar del organizador los tracks que contengan un determinado titulo
      *
      */
     public void removeByTitle(String title)
     {
-     Iterator<Track> iter = tracks.iterator();
-     while(iter.hasNext())
-       {
-           Track trackIter = iter.next();
-           if(trackIter.getTitle().contains(title)){
-               iter.remove();
+        Iterator<Track> iter = tracks.iterator();
+        while(iter.hasNext())
+        {
+            Track trackIter = iter.next();
+            if(trackIter.getTitle().contains(title)){
+                iter.remove();
             }
-       }
-        
+        }
+
     }
 }
